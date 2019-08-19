@@ -15,6 +15,16 @@ router.get('/manufacturers', (req, res) => {
     return res.send(manufacturers)
 })
 
+router.get('/top/:n', (req, res) => {
+    const { n } = req.params;
+    const result = []
+    for (let i = 0; i < n; i++) {
+        const index = Math.floor(Math.random() * db.length);
+        result.push(db[index])
+    }
+    return res.send(result);
+})
+
 router.get('/search/category/:category', (req, res) => {
     const { category } = req.params;
     console.log(category)
@@ -46,6 +56,8 @@ router.get('/search/:term', (req, res) => {
         return res.status(404).send({ err: `item ${req.params.id}` });
     }
 })
+
+
 
 router.get('/:id', function (req, res, next) {
     const item = db.find(it => it.id === req.params.id)
