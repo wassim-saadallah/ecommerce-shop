@@ -2,7 +2,15 @@ const flatten = list => list.reduce(
     (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []
 );
 const fs = require('fs');
-const db = require('./database.json')
+const results = require('./database.json')
+const db = []
+// remove duplicates
+for (let item of results) {
+    if (db.findIndex(val => item.id == val.id) < 0) {
+        db.push(item)
+    }
+}
+console.log(db.length)
 const categories = Array.from(new Set(flatten(db.map(item => item.categories.split(',')))))
 const brands = Array.from(new Set(db.map(item => item.brand)))
 const carts = [];

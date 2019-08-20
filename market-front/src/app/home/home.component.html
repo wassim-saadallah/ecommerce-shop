@@ -9,10 +9,10 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h6 class="card-title">{{item.name}}</h6>
-                    <p class="card-text"><strong>manufacturer</strong>: {{item.manufacturer}}</p>
-                    <p class="card-text"><strong>dimension</strong>: {{item.dimension}}</p>
-                    <p class="card-text"><strong>colors</strong>: {{item.colors}}</p>
-                    <p class="card-text"><strong>categories</strong>: {{item.categories}}</p>
+                    <p class="card-text"><strong>Manufacturer</strong>: {{item.manufacturer}}</p>
+                    <p class="card-text"><strong>Dimension</strong>: {{item.dimension}}</p>
+                    <p class="card-text"><strong>Colors</strong>: {{item.colors}}</p>
+                    <p class="card-text"><strong>Categories</strong>: {{item.categories}}</p>
                     <button class="btn btn-primary" (click)="addToCart(item)"><span
                             class="fa fa-shopping-cart"></span>&nbsp;Add to cart</button>
                     <p class="card-text"><small class="text-muted">Last updated: {{item.dateUpdated | date}}</small></p>
@@ -21,3 +21,6 @@
         </div>
     </div>
 </div>
+<ngb-pagination class="pagination" [collectionSize]="numItems" [pageSize]="5" [(page)]="page"
+    aria-label="Default pagination" (pageChange)="changePage($event)">
+</ngb-pagination>

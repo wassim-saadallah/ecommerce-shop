@@ -14,8 +14,10 @@ export class HomeComponent implements OnInit {
 
   public items: Item[];
   public numPurchased: number;
+  public numItems = 20;
+  public page = 1;
   ngOnInit() {
-    this.http.get<Item[]>('http://localhost:3000/items/top/5')
+    this.http.get<Item[]>('http://localhost:3000/items/top/' + this.numItems)
       .subscribe(items => {
         console.log(items)
         this.items = items.map(item => {
@@ -27,6 +29,10 @@ export class HomeComponent implements OnInit {
   }
   addToCart(item: Item) {
     this.cartService.add(item)
+  }
+
+  changePage(numPage: Event) {
+    console.log(numPage)
   }
 
 }
