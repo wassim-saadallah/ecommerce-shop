@@ -14,8 +14,9 @@ export class HomeComponent implements OnInit {
 
   public items: Item[];
   public numPurchased: number;
-  public numItems = 20;
+  public numItems = 17;
   public page = 1;
+  public pageSize = 5;
   ngOnInit() {
     this.http.get<Item[]>('http://localhost:3000/items/top/' + this.numItems)
       .subscribe(items => {
@@ -31,8 +32,8 @@ export class HomeComponent implements OnInit {
     this.cartService.add(item)
   }
 
-  changePage(numPage: Event) {
-    console.log(numPage)
+  changePage(ev: Event) {
+    window.scrollTo(0, 0)
   }
 
 }

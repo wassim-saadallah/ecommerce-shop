@@ -12,15 +12,20 @@ import { Observable, identity } from 'rxjs';
 })
 export class SearchResultListComponent implements OnInit {
 
-  searchResults$: Observable<Item[]>
+  searchResults: Item[]
   private searchTerm: string;
   private loaded = false;
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private cartService: CartService) { }
 
   async ngOnInit() {
     this.activatedRoute.params.pipe(map(a => a.term)).subscribe(term => this.searchTerm = term);
-    this.searchResults$ = this.http.get<Item[]>('http://localhost:3000/items/search/' + this.searchTerm)
-
+    this.searchResults = await this.http.get<Item[]>('http://localhost:3000/items/search/' + this.searchTerm).toPromise()
+    this.searchResults = this.searchResults.map(item => {
+      item.categories = item.categories.split(',').slice(0, 3).join(',');
+      console.log(item.categories)
+      return item
+    })
+    this.loaded = true;
   }
 
   addToCart(item: Item) {

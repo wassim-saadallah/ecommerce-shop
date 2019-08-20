@@ -4,7 +4,7 @@ import { CartComponent } from './cart/cart.component';
 import { Router } from '@angular/router';
 import { CartService } from './services/cart.service';
 import { Observable } from 'rxjs';
-import { NgForm } from "@angular/forms";
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,13 +15,13 @@ import { NgForm } from "@angular/forms";
 export class AppComponent implements OnInit {
 
   numPurchased$: Observable<number>;
-  numPurchased: number;
+  categories$: Observable<string[]>;
 
-  constructor(private modalService: NgbModal, private router: Router, private cartService: CartService) { }
+  constructor(private modalService: NgbModal, private router: Router, private cartService: CartService, private http: HttpClient) { }
 
   ngOnInit() {
     this.numPurchased$ = this.cartService.numPurchased$;
-    //this.cartService.$numPurchased.subscribe((val => this.numPurchased = val));
+    this.categories$ = this.http.get<string[]>('http://localhost:3000/items/categories')
   }
   open(ev: Event) {
     ev.preventDefault();
