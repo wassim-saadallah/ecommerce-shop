@@ -5,8 +5,11 @@
     </button>
 </div>
 <div class="modal-body">
-    <p>Hello, {{name}}!</p>
+    <pre *ngFor="let item of cartEntries">
+        {{item | json}}
+    </pre>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-dark" (click)="activeModal.close()">Check out</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
 </div>

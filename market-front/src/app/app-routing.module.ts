@@ -6,12 +6,12 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'search/:term',
+    component: SearchResultListComponent,
   },
   {
-    path: 'search',
-    component: SearchResultListComponent
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: '',

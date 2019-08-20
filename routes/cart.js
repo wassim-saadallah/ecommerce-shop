@@ -12,8 +12,13 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  carts.push(req.body)
-  res.send({ sucess: true });
+  try {
+    carts.push(req.body)
+    return res.send({ sucess: true });
+  } catch (err) {
+    return res.send({ sucess: false })
+  }
+
 });
 
 module.exports = router;

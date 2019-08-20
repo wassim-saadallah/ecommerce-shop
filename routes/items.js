@@ -20,6 +20,7 @@ router.get('/top/:n', (req, res) => {
     const result = []
     for (let i = 0; i < n; i++) {
         const index = Math.floor(Math.random() * db.length);
+        console.log(index)
         result.push(db[index])
     }
     return res.send(result);

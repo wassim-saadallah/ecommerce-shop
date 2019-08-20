@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
   <a class="navbar-brand" href="#">PH SHOP</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,18 +10,23 @@
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="" (click)="open($event)">Cart<span class="badge">5</span></a>
+        <a class="nav-link" href="" (click)="open($event)">Cart<span class="badge">{{numPurchased$ | async}}</span></a>
       </li>
       <li></li>
     </ul>
+
     <div class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onSubmit()">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" (keydown.enter)="search(searchTerm.value)"
+        #searchTerm>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+        (click)="search(searchTerm.value)">Search</button>
     </div>
+
+
   </div>
 </nav>
 
-<main role="main" class="container">
+<main role="main" class="container main-content">
   <!-- <div class="jumbotron">
     <h1>Navbar example</h1>
     <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this
