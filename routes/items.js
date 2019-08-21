@@ -26,6 +26,17 @@ router.get('/top/:n', (req, res) => {
     return res.send(result);
 })
 
+router.get('/search/term/:term', (req, res) => {
+    const { term } = req.params;
+    console.log(term)
+    const items = db.filter(it => it.keys.includes(term))
+    if (items) {
+        return res.send(items)
+    } else {
+        return res.send([]);
+    }
+})
+
 router.get('/search/category/:category', (req, res) => {
     const { category } = req.params;
     console.log(category)
@@ -48,24 +59,12 @@ router.get('/search/brand/:brand', (req, res) => {
     }
 })
 
-router.get('/search/:term', (req, res) => {
-    const { term } = req.params;
-    const items = db.filter(it => it.keys.includes(term))
-    if (items) {
-        return res.send(items)
-    } else {
-        return res.status(404).send({ err: `item ${req.params.id}` });
-    }
-})
-
-
-
 router.get('/:id', function (req, res, next) {
     const item = db.find(it => it.id === req.params.id)
     if (item) {
         return res.send(item)
     } else {
-        return res.status(404).send({ err: `item ${req.params.id}` });
+        return res.send({ err: `item ${req.params.id}` });
     }
 });
 

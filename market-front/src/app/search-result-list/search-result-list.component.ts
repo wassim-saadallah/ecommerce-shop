@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, flatMap, filter, tap } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { Item, CartService } from '../services/cart.service';
-import { Observable, identity } from 'rxjs';
 
 @Component({
   selector: 'app-search-result-list',
@@ -13,19 +12,32 @@ import { Observable, identity } from 'rxjs';
 export class SearchResultListComponent implements OnInit {
 
   searchResults: Item[]
-  private searchTerm: string;
-  private loaded = false;
+  searchTerm: string;
+  loaded = false;
+  errorMessage: string = null;
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private cartService: CartService) { }
 
   async ngOnInit() {
     this.activatedRoute.params.pipe(map(a => a.term)).subscribe(term => this.searchTerm = term);
-    this.searchResults = await this.http.get<Item[]>('http://localhost:3000/items/search/' + this.searchTerm).toPromise()
-    this.searchResults = this.searchResults.map(item => {
-      item.categories = item.categories.split(',').slice(0, 3).join(',');
-      console.log(item.categories)
-      return item
-    })
-    this.loaded = true;
+    this.http.get<Item[]>('http://localhost:3000/items/search/term/' + this.searchTerm)
+      .subscribe(
+        searchResults => {
+          console.log({ searchResults })
+          if (searchResults.length === 0) this.errorMessage = 'No results found'
+          else {
+            this.searchResults = searchResults.map(item => {
+              item.categories = item.categories.split(',').slice(0, 3).join(',');
+              console.log(item.categories)
+              return item
+            })
+            console.log(this.searchResults)
+          }
+          this.loaded = true;
+        },
+        err => {
+          this.searchResults = []
+          this.errorMessage = 'No results found'
+        })
   }
 
   addToCart(item: Item) {

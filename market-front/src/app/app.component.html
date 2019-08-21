@@ -12,13 +12,24 @@
       <li>
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Categories</a>
-          <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <li *ngFor="let cat of categories$ | async"><button ngbDropdownItem>{{cat}}</button></li>
-          </ul>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button *ngFor="let category of categories$ | async | slice:0:6" class="dropdown-item"
+              ngbDropdownItem>{{category}}</button>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div ngbDropdown class="d-inline-block">
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Brands</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button *ngFor="let brand of brands$ | async | slice:0:6" class="dropdown-item"
+              ngbDropdownItem>{{brand}}</button>
+          </div>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="" (click)="open($event)">Cart<span class="badge">{{numPurchased$ | async}}</span></a>
+        <a class="nav-link" href="" (click)="open($event)">Cart&nbsp;<span
+            class="badge badge-success">{{numPurchased$ | async}}</span></a>
       </li>
       <li></li>
     </ul>
@@ -34,6 +45,7 @@
   </div>
 </nav>
 
+
 <main role="main" class="container main-content">
   <!-- <div class="jumbotron">
     <h1>Navbar example</h1>
@@ -41,5 +53,15 @@
       navbar remains in its original position and moves with the rest of the page.</p>
     <a class="btn btn-lg btn-primary" href="/docs/4.3/components/navbar/" role="button">View navbar docs &raquo;</a>
   </div> -->
+  <p *ngIf="success === true && !closed">
+    <ngb-alert [dismissible]="true" [type]="'success'" (close)="closed=true">
+      <strong>Warning!</strong> Transaction succeeded
+    </ngb-alert>
+  </p>
+  <p *ngIf=" success===false && !closed">
+    <ngb-alert [dismissible]="true" [type]="'error'" (close)="closed=true">
+      <strong>Warning!</strong> Transaction Failed, try again !
+    </ngb-alert>
+  </p>
   <router-outlet></router-outlet>
 </main>

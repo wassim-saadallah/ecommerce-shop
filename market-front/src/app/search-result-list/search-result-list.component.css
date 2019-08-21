@@ -14,3 +14,15 @@ ngb-pagination {
 .card-body {
   line-height: 75%
 }
+
+h2 {
+  float: left;
+}
+
+div a {
+  float: right;
+}
+
+br {
+  clear: both;
+}

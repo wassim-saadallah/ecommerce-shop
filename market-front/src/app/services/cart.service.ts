@@ -20,6 +20,12 @@ export interface Item {
   primaryCategories: string;
   upc: number;
   weight: string;
+  price: number;
+}
+
+export interface CartItem {
+  item: Item,
+  quantity: number
 }
 
 @Injectable({
@@ -27,16 +33,16 @@ export interface Item {
 })
 export class CartService {
 
-  cart = new Map<Item, number>();
-  numPurchased$ = new BehaviorSubject<number>(this.cart.size)
+  cart: { [id: string]: CartItem } = {}
+  numPurchased$ = new BehaviorSubject<number>(Object.values(this.cart).length)
 
   constructor(private http: HttpClient) { }
 
   add(item: Item) {
-    if (!this.cart.has(item)) this.cart.set(item, 1)
-    else this.cart.set(item, this.cart.get(item) + 1)
+    if (!this.cart[item.id]) this.cart[item.id] = { item: item, quantity: 1 };
+    else this.cart[item.id].quantity += 1;
     console.log(this.cart)
-    this.numPurchased$.next(this.cart.size)
+    this.numPurchased$.next(Object.values(this.cart).length)
   }
 
   async save(): Promise<boolean> {

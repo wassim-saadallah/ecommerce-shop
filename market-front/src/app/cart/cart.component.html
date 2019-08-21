@@ -1,15 +1,41 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
+    <h4 class="modal-title">Cart</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <pre *ngFor="let item of cartEntries">
-        {{item | json}}
-    </pre>
+    <p *ngIf="!closed">
+        <ngb-alert [dismissible]="true" [type]="'warning'" (close)="closed=true">
+            <strong> There are no items in the cart</strong>
+        </ngb-alert>
+    </p>
+    <table class="table table-bordered table-hoverable table-striped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>ID</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cartItem of cartEntries; let i = index">
+                <td>{{cartItem.item.name}}</td>
+                <td>{{cartItem.item.asins}}</td>
+                <td><input type="number" [value]="cartItem.quantity" (change)="setQuantity($event.target.value, i)">
+                </td>
+                <td>{{cartItem.item.price | number:'1.0-2'}} TND</td>
+                <td><button class="btn btn-warning" (click)="delete(i)"><span class="fa fa-trash"></span></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="total"><strong>Total</strong> : {{total$ | async | number:'1.0-2'}} TND</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-dark" (click)="activeModal.close()">Check out</button>
+    <button type="button" class="btn btn-dark" (click)="checkout()">
+        <span *ngIf="!loading">Check out</span><span *ngIf="loading" class="fa fa-spinner fa-spin"></span>
+    </button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
 </div>
