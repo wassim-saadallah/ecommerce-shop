@@ -6,15 +6,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { SearchResultListComponent } from './search-result-list/search-result-list.component';
 import { CartComponent } from './cart/cart.component';
+import { ShopComponent } from './shop.component';
+import { ShopRoutingModule } from './shop-routing.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
     SearchResultListComponent,
-    CartComponent
+    CartComponent,
+    ShopComponent,
   ],
   imports: [
     CommonModule,
+    ShopRoutingModule,
     NgbModule,
     NgbModule.forRoot(),
     HttpClientModule

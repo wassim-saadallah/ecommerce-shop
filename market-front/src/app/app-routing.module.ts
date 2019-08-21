@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './shop/home/home.component';
-import { SearchResultListComponent } from './shop/search-result-list/search-result-list.component';
 
 
 const routes: Routes = [
   {
     path: 'shop',
-    component: SearchResultListComponent,
+    loadChildren: './shop/shop.module#ShopModule'
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule'
   },
 ];
 

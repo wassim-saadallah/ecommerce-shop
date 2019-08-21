@@ -2,9 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SearchResultListComponent } from './search-result-list/search-result-list.component';
+import { HeaderComponent } from './header/header.component';
 
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HeaderComponent
+  },
   {
     path: 'search/:term',
     component: SearchResultListComponent,
@@ -14,11 +19,6 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
     path: '**',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class ShopRoutingModule { }
