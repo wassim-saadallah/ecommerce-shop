@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CartComponent } from './cart/cart.component';
+import { CartComponent } from './shop/cart/cart.component';
 import { Router } from '@angular/router';
-import { CartService } from './services/cart.service';
+import { CartService } from './shop/services/cart.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

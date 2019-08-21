@@ -1,18 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './shop/home/home.component';
-import { SearchResultListComponent } from './shop/search-result-list/search-result-list.component';
+import { HomeComponent } from './home/home.component';
+import { SearchResultListComponent } from './search-result-list/search-result-list.component';
 
 
 const routes: Routes = [
   {
-    path: 'shop',
+    path: 'search/:term',
     component: SearchResultListComponent,
   },
   {
     path: 'home',
     component: HomeComponent
   },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
