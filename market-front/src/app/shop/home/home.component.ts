@@ -20,10 +20,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.http.get<Item[]>('http://localhost:3000/items/top/' + this.numItems)
       .subscribe(items => {
-        console.log(items)
         this.items = items.map(item => {
           item.categories = item.categories.split(',').slice(0, 3).join(',');
-          console.log(item.categories)
           return item
         })
       });

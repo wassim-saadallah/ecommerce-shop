@@ -4,8 +4,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { GlobalErrorHandler } from './GlobalErrorHandler';
-import { ShopModule } from './shop/shop.module';
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ShopModule
+    HttpClientModule
   ],
   providers: [
     {

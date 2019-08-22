@@ -8,6 +8,7 @@ import { SearchResultListComponent } from './search-result-list/search-result-li
 import { CartComponent } from './cart/cart.component';
 import { ShopComponent } from './shop.component';
 import { ShopRoutingModule } from './shop-routing.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,14 @@ import { ShopRoutingModule } from './shop-routing.module';
     SearchResultListComponent,
     CartComponent,
     ShopComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
     ShopRoutingModule,
+    HttpClientModule,
     NgbModule,
-    NgbModule.forRoot(),
-    HttpClientModule
+    NgbModule.forRoot()
   ],
   entryComponents: [CartComponent]
 })

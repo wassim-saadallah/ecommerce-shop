@@ -7,16 +7,19 @@ import { HeaderComponent } from './header/header.component';
 const routes: Routes = [
   {
     path: '',
-    component: HeaderComponent
+    component: HeaderComponent,
+    children: [
+      {
+        path: 'search/:term',
+        component: SearchResultListComponent,
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+    ]
   },
-  {
-    path: 'search/:term',
-    component: SearchResultListComponent,
-  },
-  {
-    path: 'home',
-    component: HomeComponent
-  },
+
   {
     path: '**',
     redirectTo: '/home',
