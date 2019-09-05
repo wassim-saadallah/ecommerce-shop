@@ -15,7 +15,10 @@ const routes: Routes = [
             { path: 'bs-element', loadChildren: () => import('./bs-element/bs-element.module').then(m => m.BsElementModule) },
             { path: 'grid', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
-            { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) }
+            { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
+            { path: 'stock', loadChildren: () => import('./stock/stock.module').then(m => m.StockModule) },
+            { path: 'brands', loadChildren: () => import('./brands/brands.module').then(m => m.BrandsModule) },
+            { path: 'categories', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule) },
         ]
     }
 ];
