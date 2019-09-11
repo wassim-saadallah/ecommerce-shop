@@ -1,10 +1,15 @@
 img {
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 240px;
+  max-height: 240px;
   height: auto;
   width: auto;
   display: block;
   margin: 15px auto;
+}
+
+.img-container {
+  padding: 0;
+  margin: 0;
 }
 
 ngb-pagination {

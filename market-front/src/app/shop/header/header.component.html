@@ -13,8 +13,8 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Categories</a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button *ngFor="let category of categories$ | async | slice:0:6" class="dropdown-item"
-              ngbDropdownItem>{{category}}</button>
+            <button *ngFor="let category of categories$ | async | slice:0:6" class="dropdown-item" ngbDropdownItem
+              (click)="navigateToCategory(category)">{{category}}</button>
           </div>
         </div>
       </li>
@@ -22,12 +22,12 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Brands</a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button *ngFor="let brand of brands$ | async | slice:0:6" class="dropdown-item"
-              ngbDropdownItem>{{brand}}</button>
+            <button *ngFor="let brand of brands$ | async | slice:0:6" class="dropdown-item" ngbDropdownItem
+              (click)="navigateToBrand(brand)">{{brand}}</button>
           </div>
         </div>
       </li>
-      <li class="nav-item">
+      <li class=" nav-item">
         <a class="nav-link" href="" (click)="open($event)">Cart&nbsp;<span
             class="badge badge-success">{{numPurchased$ | async}}</span></a>
       </li>

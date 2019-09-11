@@ -1,6 +1,6 @@
-<h2>Featured</h2>
+<h2> {{brand}} </h2>
 
-<div class="row" *ngFor="let item of items | slice:pageSize * (page - 1):pageSize * page">
+<div class="row" *ngFor="let item of items$ | async | slice:pageSize * (page - 1):pageSize * page">
     <div class="card mb-4" style="height: 250px; width: 100%">
         <div class="row no-gutters">
             <div class="col-md-4 img-container">
@@ -12,7 +12,7 @@
                     <p class="card-text"><strong>Manufacturer</strong>: {{item.manufacturer || "N/A"}}</p>
                     <p class="card-text"><strong>Dimension</strong>: {{item.dimension || "N/A"}}</p>
                     <p class="card-text"><strong>Colors</strong>: {{item.colors || "N/A"}}</p>
-                    <p class="card-text"><strong>Categories</strong>: {{item.categories || "N/A"}}</p>
+                    <p class="card-text"><strong>Categories</strong>: {{item.categories | slice:0:50 || "N/A"}}...</p>
                     <button class="btn btn-primary" (click)="addToCart(item)"><span
                             class="fa fa-shopping-cart"></span>&nbsp;Add to cart</button>
                     <br>

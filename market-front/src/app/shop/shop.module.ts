@@ -9,6 +9,8 @@ import { CartComponent } from './cart/cart.component';
 import { ShopComponent } from './shop.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { BrandsComponent } from './brands/brands.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HeaderComponent } from './header/header.component';
     SearchResultListComponent,
     CartComponent,
     ShopComponent,
-    HeaderComponent
+    HeaderComponent,
+    CategoriesComponent,
+    BrandsComponent
   ],
   imports: [
     CommonModule,

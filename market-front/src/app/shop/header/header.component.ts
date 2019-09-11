@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   brands$: Observable<string[]>;
   success: boolean;
   closed = false;
-  constructor(private modalService: NgbModal, private router: Router, private cartService: CartService, private http: HttpClient) { }
+  constructor(private modalService: NgbModal, private router: Router, private cartService: CartService, private http: HttpClient, ) { }
 
   ngOnInit() {
     this.numPurchased$ = this.cartService.numPurchased$;
@@ -35,5 +35,13 @@ export class HeaderComponent implements OnInit {
 
   search(term: string) {
     this.router.navigate(['/shop/search', term]);
+  }
+
+  navigateToCategory(category: string) {
+    this.router.navigate(['/shop/categories', category])
+  }
+
+  navigateToBrand(category: string) {
+    this.router.navigate(['/shop/categories', category])
   }
 }
