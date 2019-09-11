@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { db, categories, brands } = require('../db');
 
+router.get('/', (req, res) => {
+    return res.send(db)
+})
 
 router.get('/categories', (req, res) => {
     return res.send(categories)

@@ -1,38 +1,35 @@
 <app-page-header [heading]="'Stock'" [icon]="'fa-list'"></app-page-header>
 <div class="row">
-  <div class="col col-xl-6 col-lg-12">
+  <div class="col-md-12">
     <div class="card mb-3">
       <div class="card-header">
-        Basic example
+        All Items
+        <div class="float-right">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" (input)="filter($event.target.value)">
+        </div>
       </div>
       <div class="card-body table-responsive">
         <table class="table">
           <thead>
             <tr>
               <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>id</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>category</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+            <tr *ngFor="let item of filteredItems ; let i=index">
+              <th scope="row">{{i}}</th>
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.brand}}</td>
+              <td>{{item.primaryCategories}}</td>
+              <td><button class="btn-success" (click)="edit(content, i)"><i class="fa fa-pen"></i></button></td>
+              <td><button class="btn-danger" (click)="remove(i)"><i class="fa fa-trash"></i></button></td>
             </tr>
           </tbody>
         </table>
@@ -40,3 +37,42 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{item.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <fieldset class="form-group">
+      <label>Name</label>
+      <input class="form-control" [(ngModel)]="item.name">
+    </fieldset>
+    <fieldset class="form-group">
+      <label>Cateogry</label>
+      <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="item.primaryCategories"
+        [ngbTypeahead]="searchCategories" />
+    </fieldset>
+    <fieldset class="form-group">
+      <label>Brand</label>
+      <select>
+        <option>{{item.brand}}</option>
+        <option *ngFor="let brand of brands" value="1">One</option>
+  </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <label>Dimension</label>
+    <input class="form-control" [(ngModel)]="item.dimension">
+  </fieldset>
+  <fieldset class="form-group">
+    <label>Color</label>
+    <input class="form-control" [(ngModel)]="item.color">
+  </fieldset>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
