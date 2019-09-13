@@ -5,6 +5,7 @@ import { StockRoutingModule } from './stock-routing.module';
 import { StockComponent } from './stock.component';
 import { PageHeaderModule } from './../../shared';
 import { FormsModule } from '@angular/forms';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [StockComponent],
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     StockRoutingModule,
     PageHeaderModule,
-    FormsModule
+    FormsModule,
+    NgbTypeaheadModule
   ],
 })
 export class StockModule {

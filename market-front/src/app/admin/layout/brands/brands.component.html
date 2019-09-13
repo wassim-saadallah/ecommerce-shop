@@ -1,1 +1,47 @@
-<p>brands works!</p>
+<app-page-header [heading]="'Brands'" [icon]="'fa-list'"></app-page-header>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="input-group">
+          <input class="form-control mr-sm-2" type="text" placeholder="brand" [(ngModel)]="newBrand">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="add()">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mb-3">
+      <div class="card-header">
+        All Brands
+        <div class="float-right">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" (input)="filter($event.target.value)">
+        </div>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cat of filteredBrands ; let i=index">
+              <td scope="row">{{i}}</td>
+              <td>{{cat}}</td>
+              <td><button class="btn-success" (click)="edit(content, i)"><i class="fa fa-pen"></i></button></td>
+              <td><button class="btn-danger" (click)="remove(i)"><i class="fa fa-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
